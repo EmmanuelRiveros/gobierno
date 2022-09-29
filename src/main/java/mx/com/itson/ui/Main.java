@@ -225,8 +225,7 @@ public class Main extends javax.swing.JFrame {
         try {
             lblCurp.setText(gobierno.crearCurp(nombre, apellido, dia, mes, anio, sexo, estado));
         } catch (Exception e){
-            
-            infoBox("Vuelve a ingresar los datos", "Error al generar CURP");
+            errorBox("Vuelve a ingresar los datos", "Error al generar CURP");
             
             System.out.println(e);
         }
@@ -270,9 +269,9 @@ public class Main extends javax.swing.JFrame {
     
     // Genera una ventana de información al usuario
     
-    private static void infoBox(String infoMsj, String titulo)
+    private static void errorBox(String infoMsj, String titulo)
     {
-        JOptionPane.showMessageDialog(null, infoMsj, titulo, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, infoMsj, titulo, JOptionPane.ERROR_MESSAGE);
     }
 
 

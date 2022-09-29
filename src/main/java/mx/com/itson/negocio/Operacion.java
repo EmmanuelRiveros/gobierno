@@ -36,7 +36,7 @@ public class Operacion {
         String errorMes = buscarErrores(mes, 2, "mes", 12);
         String errorAnio = buscarErrores(anio, 4, "año", 2022);
         
-        // Comprueba si existen errores si no imprime el error en pantalla.
+        // Comprueba si existen errores de ser así imprime el error en pantalla.
         if (!errorDia.isEmpty()){
             return errorDia;
         }
