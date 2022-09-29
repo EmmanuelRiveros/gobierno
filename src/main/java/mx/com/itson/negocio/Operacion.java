@@ -9,7 +9,7 @@ package mx.com.itson.negocio;
  *
  * @author Emmanuel R, Francisco O
  */
-public class Gobierno {
+public class Operacion {
 
     public static void main(String[] args) {
         

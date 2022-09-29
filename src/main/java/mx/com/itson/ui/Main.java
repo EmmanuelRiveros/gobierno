@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mx.com.itson.ui;
-import mx.com.itson.negocio.Gobierno;
+import mx.com.itson.negocio.Operacion;
 import javax.swing.JOptionPane;
 
 /**
@@ -213,7 +213,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
-        Gobierno gobierno = new Gobierno();
+        Operacion gobierno = new Operacion();
         String nombre = txtNombre.getText().toUpperCase();
         String apellido = txtApellido.getText().toUpperCase();
         String dia = txtDia.getText();
