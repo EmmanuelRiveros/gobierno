@@ -21,20 +21,20 @@ public class Operacion {
      * @param apellido
      * @param dia 
      * @param mes
-     * @param ano
+     * @param anio
      * @param sexo
      * @param estado 
      * @return curp
      */
     
-    public String crearCurp (String nombre, String apellido, String dia, String mes, String ano, String sexo, String estado ){
+    public String crearCurp (String nombre, String apellido, String dia, String mes, String anio, String sexo, String estado ){
         
         String curp;
         
         // Utiliza el metodo buscarErrores el cual devuelve un string con detalles del error.
         String errorDia = buscarErrores(dia, 2, "día", 31);
         String errorMes = buscarErrores(mes, 2, "mes", 12);
-        String errorAno = buscarErrores(ano, 4, "año", 2022);
+        String errorAnio = buscarErrores(anio, 4, "año", 2022);
         
         // Comprueba si existen errores si no imprime el error en pantalla.
         if (!errorDia.isEmpty()){
@@ -43,13 +43,13 @@ public class Operacion {
         if (!errorMes.isEmpty()){
             return errorMes;
         }
-        if (!errorAno.isEmpty()){
-            return errorAno;
+        if (!errorAnio.isEmpty()){
+            return errorAnio;
         }
        
         // Recorta los espacios que esten por fuera, convierte todos los caracteres a mayúscula y reemplaza los caracteres invalidos
-        nombre = nombre.trim().toUpperCase().replace("¡", "").replace("!", "").replace("¿", "").replace("?", "").replace("á", "A").replace("é", "E").replace("í", "I").replace("ó", "O").replace("ú", "U").replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").replace(",", "").replace(".", "").replace("(", "").replace(")", "");
-        apellido = apellido.trim().toUpperCase().replace("¡", "").replace("!", "").replace("¿", "").replace("?", "").replace("á", "A").replace("é", "E").replace("í", "I").replace("ó", "O").replace("ú", "U").replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").replace(",", "").replace(".", "").replace("(", "").replace(")", "");
+        nombre = nombre.trim().toUpperCase().replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "").replace("0", "").replace("¡", "").replace("!", "").replace("¿", "").replace("?", "").replace("á", "A").replace("é", "E").replace("í", "I").replace("ó", "O").replace("ú", "U").replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").replace(",", "").replace(".", "").replace("(", "").replace(")", "");
+        apellido = apellido.trim().toUpperCase().replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "").replace("0", "").replace("¡", "").replace("!", "").replace("¿", "").replace("?", "").replace("á", "A").replace("é", "E").replace("í", "I").replace("ó", "O").replace("ú", "U").replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").replace(",", "").replace(".", "").replace("(", "").replace(")", "");
         
         // Crea un array que contendra dos espacios para dos nombres
         String[] nombres = {"", ""};
@@ -103,7 +103,7 @@ public class Operacion {
             curp = curp + apellido2Arr[0];
         }
         
-        // Busca nombres compuestos para ingresar la primer letra del segundo nombre en dado caso de que sea True
+        // Busca nombres compuestos para ingresar la primer letra del segundo nombre en dado caso de que sea verdadero
         if (nombres[0].equals("Jose") && nombres[1].equals("Maria") || nombres[0].equals("Maria") && nombres[1].equals("Jose")){
             curp = curp + nombre2Arr[0];
         } else {
@@ -111,10 +111,10 @@ public class Operacion {
         }
         
         // Crea un nuevo array de año
-        char[] anoArr = ano.toCharArray();
+        char[] anioArr = anio.toCharArray();
         
         // Agrega los ultimos dos digitos del año, el mes y el día
-        curp = curp + anoArr[2] + anoArr[3] + mes + dia;
+        curp = curp + anioArr[2] + anioArr[3] + mes + dia;
         
         curp = switch (sexo) {
             case "Hombre" -> curp + "H";
@@ -170,9 +170,9 @@ public class Operacion {
         curp = curp + buscarConsonante(nombre1Arr);
         
         // Se convierte el año tipo string a int para realizar una comparación y dependiendo del resultado agregar un caractér a la curp
-        int anoInt = Integer.parseInt(ano);
+        int anioInt = Integer.parseInt(anio);
         
-        if (anoInt >= 2000 ){
+        if (anioInt >= 2000 ){
             curp = curp + "A";
         } else{
             curp = curp + "0";

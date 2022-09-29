@@ -218,12 +218,12 @@ public class Main extends javax.swing.JFrame {
         String apellido = txtApellido.getText().toUpperCase();
         String dia = txtDia.getText();
         String mes = txtMes.getText();
-        String ano = txtAno.getText();
+        String anio = txtAno.getText();
         String sexo = cmbSexo.getSelectedItem().toString();
         String estado = cmbEstado.getSelectedItem().toString(); 
         
         try {
-            lblCurp.setText(gobierno.crearCurp(nombre, apellido, dia, mes, ano, sexo, estado));
+            lblCurp.setText(gobierno.crearCurp(nombre, apellido, dia, mes, anio, sexo, estado));
         } catch (Exception e){
             
             infoBox("Vuelve a ingresar los datos", "Error al generar CURP");
