@@ -31,10 +31,22 @@ public class Gobierno {
         
         String curp;
         
-        if (dia.contains("a")){
-            
-        }
+        // Utiliza el metodo buscarErrores el cual devuelve un string con detalles del error.
+        String errorDia = buscarErrores(dia, 2, "día", 31);
+        String errorMes = buscarErrores(mes, 2, "mes", 12);
+        String errorAno = buscarErrores(ano, 4, "año", 2022);
         
+        // Comprueba si existen errores si no imprime el error en pantalla.
+        if (!errorDia.isEmpty()){
+            return errorDia;
+        }
+        if (!errorMes.isEmpty()){
+            return errorMes;
+        }
+        if (!errorAno.isEmpty()){
+            return errorAno;
+        }
+       
         // Recorta los espacios que esten por fuera, convierte todos los caracteres a mayúscula y reemplaza los caracteres invalidos
         nombre = nombre.trim().toUpperCase().replace("¡", "").replace("!", "").replace("¿", "").replace("?", "").replace("á", "A").replace("é", "E").replace("í", "I").replace("ó", "O").replace("ú", "U").replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").replace(",", "").replace(".", "").replace("(", "").replace(")", "");
         apellido = apellido.trim().toUpperCase().replace("¡", "").replace("!", "").replace("¿", "").replace("?", "").replace("á", "A").replace("é", "E").replace("í", "I").replace("ó", "O").replace("ú", "U").replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").replace(",", "").replace(".", "").replace("(", "").replace(")", "");
@@ -98,8 +110,8 @@ public class Gobierno {
             curp = curp + nombre1Arr[0];
         }
         
-        // Crea un nuevo array de año separado por cada digito
-        String anoArr[] = ano.split("");
+        // Crea un nuevo array de año
+        char[] anoArr = ano.toCharArray();
         
         // Agrega los ultimos dos digitos del año, el mes y el día
         curp = curp + anoArr[2] + anoArr[3] + mes + dia;
@@ -168,13 +180,48 @@ public class Gobierno {
         
         curp = curp + "1";
         
-        return curp;
+        return "Tu CURP es: " + curp;
     }
+    
+    /**
+     * Método utilizado para comprobar si no hay errores en la introducción de valores númericos
+     * @param texto el valor a comprobar
+     * @param longitudMax la longitud máxima en carácteres que debe tener el texto
+     * @param tipo el tipo de dato que se va a comprobar
+     * @param valorMax el valor maximo que debe tener el valor
+     * @return 
+     */
+    
+    private String buscarErrores (String texto, int longitudMax, String tipo, int valorMax){
+        String error = "";
+        char[] textoArr = texto.toCharArray();
+        
+        if (texto.isBlank()){
+            error = "El "+ tipo +" esta vacío";
+        }
+        
+        for(int i=0; i<(textoArr.length); i++){
+            if (!Character.isDigit(textoArr[i])){
+                error = "El "+ tipo +" introducido no es dígito";
+                
+            } else if (textoArr.length > longitudMax) {
+                error = "El "+ tipo +" debe tener "+ longitudMax +" dígitos máximo";
+
+            } else if (Integer.parseInt(texto) > valorMax){
+                error = "El "+ tipo +" supera el valor máximo";
+            }
+        } 
+        
+        return error;
+        
+    }
+    
     /**
      * Metódo utilizado para buscar la primer consonante no inicial de cualquier palabra.
-     * @param palabra
+     * @param palabra la palabra que se inspeccionara
      * @return consonanteInterna
      */
+    
     private char buscarConsonante (char[] palabra){
         boolean encontrada = false;
         char consonanteInterna = 'X';
